@@ -1,0 +1,45 @@
+@import "_variables.scss";
+
+.container-circle {
+
+    .circle {
+        width: $diameter-circle;
+        height: $diameter-circle;
+        border: 1px solid rgb($black-blue, $defoult-opacity-vector);
+        border-radius: 50%;
+        position: relative;
+    }
+
+    .point {
+        width: $diameter-point;
+        height: $diameter-point;
+        border-radius: 50%;
+        background-color: $black-blue;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        text-align: center;
+        cursor: pointer;
+        transition: transform 1s;
+    }
+
+    .point > p {
+        display: none;
+    }
+
+    .point:hover > p {
+        display: inline-block;
+        transform: translateY(-10%) scale(calc(1/3));
+    }
+
+    @for $i from 0 through $numPoint {
+        .point:nth-child(#{$i + 1}) {
+            transform: translate(-50%, -50%) rotate(calc($arcAngle * $i - $shift)) translate(calc($diameter-circle / 2)) rotate(- calc($arcAngle * $i - $shift));
+            transition: transform 0.5s;
+        }
+        .point:nth-child(#{$i + 1}):hover {
+            transform: translate(-50%, -50%) rotate(calc($arcAngle * $i - $shift)) translate(calc($diameter-circle / 2)) rotate(- calc($arcAngle * $i - $shift)) scale(6);
+            background-color: white;
+        }
+    }
+}

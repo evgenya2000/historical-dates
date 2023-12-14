@@ -1,0 +1,68 @@
+@import "_variables.scss";
+
+.HistoricalBlock {
+    font-family: "PT Sans";
+    width: 80%;
+    height: 100%;
+    margin-left: 15%;
+    border: 1px solid rgb($black-blue, $defoult-opacity-vector);
+    position: relative;
+
+    .background-container {
+        position: absolute;
+        z-index: 1;
+        opacity: $defoult-opacity-vector;
+        .horizontal-vector {
+            background-color: $black-blue;
+            width: 100%;
+            height: 1px;
+            position: absolute;
+            z-index: 1;
+            top: 50%;
+        }
+        .vertical-vector {
+            background-color: $black-blue;
+            width: 1px;
+            height: 100%;
+            position: absolute;
+            z-index: 2;
+            left: 50%;
+        }
+    }
+
+    .header {
+        position: absolute;
+        z-index: 2;
+        top: 20%;
+        display: flex;
+        height: auto;
+        max-width: 30%;
+        .vector {
+            width: 5px;
+            height: auto;
+            background: linear-gradient($blue, $pink);
+        }
+        .text-header{
+            display: inline-block;
+            margin: 0;
+            padding: 0;
+            width: auto;
+            height: auto;
+            margin-left: 10%;
+            font-size: 300%;
+            font-weight: 700;
+            color: $black-blue;
+        }
+
+    }
+
+    .footer {
+        width: auto;
+        height: auto;
+        position: absolute;
+        z-index: 3;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+    }
+}
