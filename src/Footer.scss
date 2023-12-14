@@ -33,13 +33,28 @@
     }
 
     @for $i from 0 through $numPoint {
-        .point:nth-child(#{$i + 1}) {
-            transform: translate(-50%, -50%) rotate(calc($arcAngle * $i - $shift)) translate(calc($diameter-circle / 2)) rotate(- calc($arcAngle * $i - $shift));
-            transition: transform 0.5s;
+        #point#{$i + 1} {
+            & {
+                transform: translate(-50%, -50%) rotate(calc($arcAngle * $i - $shift)) translate(calc($diameter-circle / 2)) rotate(- calc($arcAngle * $i - $shift));
+                transition: transform 0.5s;
+            }
+            &:hover {
+                transform: translate(-50%, -50%) rotate(calc($arcAngle * $i - $shift)) translate(calc($diameter-circle / 2)) rotate(- calc($arcAngle * $i - $shift)) scale(6);
+                background-color: white;
+            }
         }
-        .point:nth-child(#{$i + 1}):hover {
-            transform: translate(-50%, -50%) rotate(calc($arcAngle * $i - $shift)) translate(calc($diameter-circle / 2)) rotate(- calc($arcAngle * $i - $shift)) scale(6);
-            background-color: white;
+    }
+
+    #current {
+        transform: translate(-50%, -50%) rotate(- $shift) translate(calc($diameter-circle / 2)) rotate($shift);
+        transition: transform 0.5s;
+        width: $diameter-point * 6;
+        height: $diameter-point * 6;
+        background-color: white;
+
+        p {
+            display: inline-block;
+            transform: translateY(70%) scale(2);
         }
     }
 }
