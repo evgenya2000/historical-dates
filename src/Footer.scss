@@ -24,23 +24,26 @@
     }
 
     .point > p {
+        font-weight: 400;
         display: none;
+        transform: translateY(45%) scale(calc(1.2));
     }
 
     .point:hover > p {
-        display: inline-block;
-        transform: translateY(-10%) scale(calc(1/3));
+        display: inline-block;      
     }
 
     @for $i from 0 through $numPoint {
         #point#{$i + 1} {
             & {
                 transform: translate(-50%, -50%) rotate(calc($arcAngle * $i - $shift)) translate(calc($diameter-circle / 2)) rotate(- calc($arcAngle * $i - $shift));
-                transition: transform 0.5s;
+                transition: transform 0.5s, width 0.5s, height 0.5s, border-radius 0.5s, background-color 0.5s;
+                border: 1px solid $gray;
             }
             &:hover {
-                transform: translate(-50%, -50%) rotate(calc($arcAngle * $i - $shift)) translate(calc($diameter-circle / 2)) rotate(- calc($arcAngle * $i - $shift)) scale(6);
                 background-color: white;
+                width: calc($diameter-point * 6);
+                height: calc($diameter-point * 6);
             }
         }
     }
@@ -48,13 +51,58 @@
     #current {
         transform: translate(-50%, -50%) rotate(- $shift) translate(calc($diameter-circle / 2)) rotate($shift);
         transition: transform 0.5s;
-        width: $diameter-point * 6;
-        height: $diameter-point * 6;
+        width: calc($diameter-point * 6);
+        height: calc($diameter-point * 6);
         background-color: white;
+        border: 1px solid $gray;
 
         p {
             display: inline-block;
-            transform: translateY(70%) scale(2);
+            font-weight: 400;
+            transform: translateY(45%) scale(1.2);
         }
     }
+
+    .container-button {
+        display: flex;
+        flex-direction: row;
+        height: auto;
+        width: auto;
+        
+        .arrow {
+            position: relative;
+            width: 25px;
+            height: 25px;
+            border: 1px solid rgb($black-blue, 0.5);
+            border-radius: 50%;
+        }
+    
+        .arrow-left:after {
+            position: absolute;
+            top: 8px;;
+            left: 9px;
+            content: '';
+            display: block;
+            width: 7px;
+            height: 7px;
+            border-left: 2px solid $black-blue;
+            border-bottom: 2px solid $black-blue;
+            transform: rotate(45deg);
+        }
+    
+        .arrow-right:after {
+            position: absolute;
+            top: 8px;;
+            left: 9px;
+            content: '';
+            display: block;
+            width: 7px;
+            height: 7px;
+            border-left: 2px solid $black-blue;
+            border-bottom: 2px solid $black-blue;
+            transform: translate(-30%) rotate(225deg);
+        }
+    }
+    
 }
+
