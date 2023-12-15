@@ -1,6 +1,8 @@
 @import "_variables.scss";
 
 .container-circle {
+    color: $black-blue;
+    position: relative;
 
     .circle {
         width: $diameter-circle;
@@ -8,6 +10,8 @@
         border: 1px solid rgb($black-blue, $defoult-opacity-vector);
         border-radius: 50%;
         position: relative;
+        margin: auto;
+        z-index: 2;
     }
 
     .point {
@@ -42,8 +46,8 @@
             }
             &:hover {
                 background-color: white;
-                width: calc($diameter-point * 6);
-                height: calc($diameter-point * 6);
+                width: calc($diameter-point * $increase-for-current);
+                height: calc($diameter-point * $increase-for-current);
             }
         }
     }
@@ -51,56 +55,112 @@
     #current {
         transform: translate(-50%, -50%) rotate(- $shift) translate(calc($diameter-circle / 2)) rotate($shift);
         transition: transform 0.5s;
-        width: calc($diameter-point * 6);
-        height: calc($diameter-point * 6);
+        width: calc($diameter-point * $increase-for-current);
+        height: calc($diameter-point * $increase-for-current);
         background-color: white;
         border: 1px solid $gray;
 
         p {
             display: inline-block;
             font-weight: 400;
-            transform: translateY(45%) scale(1.2);
+            transform: translateY(130%) scale(1.2);
+            width: auto;
+            height: auto;
         }
     }
 
+    .container-years {
+        display: flex;
+        flex-direction: row;
+        width: auto;
+        height: auto;
+        position: absolute;
+        margin-top: -23%;
+        margin-left: 10%;
+        font-size: 1500%;
+        font-weight: 700;
+        transition: transform 0.5s;
+        user-select: none;
+
+        .first-year {
+            margin-right: 10%;
+            color: $iris;
+        }
+
+        .second-year {
+            color: $pink;
+        }
+    }
+
+    p.current-point {
+        display: inline-block;
+        transform: scale(1.2);
+        width: auto;
+        height: auto;
+        margin-left: calc($vector-header-width + 3.2%);
+        margin-top: -4%;
+        position: absolute;
+    }
+
     .container-button {
+        margin-top: -1%;
         display: flex;
         flex-direction: row;
         height: auto;
         width: auto;
-        
+        margin-left: calc($vector-header-width + 3%) ;
+        position: absolute;
+
         .arrow {
             position: relative;
-            width: 25px;
-            height: 25px;
+            width: $diameter-point * $increase-for-current;
+            height: $diameter-point * $increase-for-current;
             border: 1px solid rgb($black-blue, 0.5);
             border-radius: 50%;
+            cursor: pointer;
+            &:hover {
+                background-color: white;
+            }
         }
     
-        .arrow-left:after {
-            position: absolute;
-            top: 8px;;
-            left: 9px;
-            content: '';
-            display: block;
-            width: 7px;
-            height: 7px;
-            border-left: 2px solid $black-blue;
-            border-bottom: 2px solid $black-blue;
-            transform: rotate(45deg);
+        .arrow-left {
+            &::after {
+                position: absolute;
+                top: 8px;;
+                left: 9px;
+                content: '';
+                display: block;
+                width: 7px;
+                height: 7px;
+                border-left: 2px solid $black-blue;
+                border-bottom: 2px solid $black-blue;
+                transform: translate(200%, 200%) rotate(45deg);
+            }
         }
     
-        .arrow-right:after {
-            position: absolute;
-            top: 8px;;
-            left: 9px;
-            content: '';
-            display: block;
-            width: 7px;
-            height: 7px;
-            border-left: 2px solid $black-blue;
-            border-bottom: 2px solid $black-blue;
-            transform: translate(-30%) rotate(225deg);
+        .arrow-right{
+            transform: translateX(45%);
+            &::after {
+                position: absolute;
+                top: 8px;;
+                left: 9px;
+                content: '';
+                display: block;
+                width: 7px;
+                height: 7px;
+                border-left: 2px solid $black-blue;
+                border-bottom: 2px solid $black-blue;
+                transform: translate(170%, 200%) rotate(225deg);
+            }
+        }
+
+        .btn-off {
+            pointer-events: none;
+            border: 1px solid rgb($black-blue, 0.25);
+            &::after {
+                border-left: 2px solid rgb($black-blue, 0.25);
+                border-bottom: 2px solid rgb($black-blue, 0.25);
+            }
         }
     }
     
