@@ -3,14 +3,17 @@
 .container-circle {
     color: $black-blue;
     position: relative;
+    height: 80%;
 
     .circle {
         width: $diameter-circle;
         height: $diameter-circle;
         border: 1px solid rgb($black-blue, $defoult-opacity-vector);
         border-radius: 50%;
-        position: relative;
-        margin: auto;
+        position: absolute;
+        top: 55%;
+        left: 50%;
+        transform: translate(-50%, -50%);
         z-index: 2;
     }
 
@@ -75,20 +78,30 @@
         width: auto;
         height: auto;
         position: absolute;
-        margin-top: -23%;
-        margin-left: 10%;
-        font-size: 1500%;
+        z-index: 1;
+        box-sizing:content-box;
+        font-size: $font-size-years;
         font-weight: 700;
         transition: transform 0.5s;
         user-select: none;
+        top: 55%;
+        left: 50%;
+        transform: translate(-50%, -50%);
 
         .first-year {
-            margin-right: 10%;
+            display: inline-block;
+            height: auto;
+            width: auto;
             color: $iris;
+            transform: translate(-5%);
         }
 
         .second-year {
+            display: inline-block;
+            height: auto;
+            width: auto;
             color: $pink;
+            transform: translate(5%);
         }
     }
 
@@ -97,19 +110,19 @@
         transform: scale(1.2);
         width: auto;
         height: auto;
-        margin-left: calc($vector-header-width + 3.2%);
-        margin-top: -4%;
+        margin-left: calc($vector-header-width + 6.2%);
         position: absolute;
+        top: 74%;
     }
 
     .container-button {
-        margin-top: -1%;
         display: flex;
         flex-direction: row;
         height: auto;
         width: auto;
-        margin-left: calc($vector-header-width + 3%) ;
+        margin-left: calc($vector-header-width + 6%) ;
         position: absolute;
+        top: 79%;
 
         .arrow {
             position: relative;
@@ -134,7 +147,7 @@
                 height: 7px;
                 border-left: 2px solid $black-blue;
                 border-bottom: 2px solid $black-blue;
-                transform: translate(200%, 200%) rotate(45deg);
+                transform: translate(180%, 180%) rotate(45deg);
             }
         }
     
@@ -150,7 +163,7 @@
                 height: 7px;
                 border-left: 2px solid $black-blue;
                 border-bottom: 2px solid $black-blue;
-                transform: translate(170%, 200%) rotate(225deg);
+                transform: translate(150%, 180%) rotate(225deg);
             }
         }
 
@@ -164,17 +177,450 @@
         }
     }
     
+    @media screen and (max-width: 1265px) {
+        .circle {
+            width: $diameter-circle-1265;
+            height: $diameter-circle-1265;
+        }
+
+        .point {
+            width: $diameter-point-1265;
+            height: $diameter-point-1265;
+        }
+    
+        @for $i from 0 through $numPoint {
+            #point#{$i + 1} {
+                & {
+                    transform: translate(-50%, -50%) rotate(calc($arcAngle * $i - $shift)) translate(calc($diameter-circle-1265 / 2)) rotate(- calc($arcAngle * $i - $shift));
+                }
+                &:hover {
+                    width: calc($diameter-point-1265 * $increase-for-current);
+                    height: calc($diameter-point-1265 * $increase-for-current);
+                }
+            }
+        }
+    
+        #current {
+            transform: translate(-50%, -50%) rotate(- $shift) translate(calc($diameter-circle-1265 / 2)) rotate($shift);
+            width: calc($diameter-point-1265 * $increase-for-current);
+            height: calc($diameter-point-1265 * $increase-for-current);
+        }
+
+        .container-years {
+            font-size: $font-size-years-1265;
+        }
+        .container-button {
+            .arrow {
+                width: $diameter-point-1265 * $increase-for-current;
+                height: $diameter-point-1265 * $increase-for-current;
+            }
+        }
+    }
+
+    @media screen and (max-width: 980px) {
+        .circle {
+            width: $diameter-circle-980;
+            height: $diameter-circle-980;
+        }
+
+        .point {
+            width: $diameter-point-980;
+            height: $diameter-point-980;
+        }
+    
+        @for $i from 0 through $numPoint {
+            #point#{$i + 1} {
+                & {
+                    transform: translate(-50%, -50%) rotate(calc($arcAngle * $i - $shift)) translate(calc($diameter-circle-980 / 2)) rotate(- calc($arcAngle * $i - $shift));
+                }
+                &:hover {
+                    width: calc($diameter-point-980 * $increase-for-current);
+                    height: calc($diameter-point-980 * $increase-for-current);
+                }
+            }
+        }
+    
+        #current {
+            transform: translate(-50%, -50%) rotate(- $shift) translate(calc($diameter-circle-980 / 2)) rotate($shift);
+            width: calc($diameter-point-980 * $increase-for-current);
+            height: calc($diameter-point-980 * $increase-for-current);
+        }
+
+        .container-years {
+            font-size: $font-size-years-980;
+        }
+        
+        .container-button {
+            .arrow {
+                width: $diameter-point-980 * $increase-for-current;
+                height: $diameter-point-980 * $increase-for-current;
+            }
+        }
+    }
+
+    @media screen and (max-width: 900px) {
+        .circle {
+            width: $diameter-circle-900;
+            height: $diameter-circle-900;
+        }
+
+        .point {
+            width: $diameter-point-900;
+            height: $diameter-point-900;
+        }
+    
+        @for $i from 0 through $numPoint {
+            #point#{$i + 1} {
+                & {
+                    transform: translate(-50%, -50%) rotate(calc($arcAngle * $i - $shift)) translate(calc($diameter-circle-900 / 2)) rotate(- calc($arcAngle * $i - $shift));
+                }
+                &:hover {
+                    width: calc($diameter-point-900 * $increase-for-current);
+                    height: calc($diameter-point-900 * $increase-for-current);
+                }
+            }
+        }
+    
+        #current {
+            transform: translate(-50%, -50%) rotate(- $shift) translate(calc($diameter-circle-900 / 2)) rotate($shift);
+            width: calc($diameter-point-900 * $increase-for-current);
+            height: calc($diameter-point-900 * $increase-for-current);
+        }
+
+        .container-years {
+            font-size: $font-size-years-900;
+        }
+
+        .container-button {
+            .arrow {
+                width: $diameter-point-900 * $increase-for-current;
+                height: $diameter-point-900 * $increase-for-current;
+            }
+        }
+    }
+
+    @media screen and (max-width: 800px) {
+        .circle {
+            width: $diameter-circle-800;
+            height: $diameter-circle-800;
+        }
+
+        .point {
+            width: $diameter-point-800;
+            height: $diameter-point-800;
+        }
+    
+        .point > p {
+            transform: translateY(40%) scale(calc(1.2));
+        }
+
+        @for $i from 0 through $numPoint {
+            #point#{$i + 1} {
+                & {
+                    transform: translate(-50%, -50%) rotate(calc($arcAngle * $i - $shift)) translate(calc($diameter-circle-800 / 2)) rotate(- calc($arcAngle * $i - $shift));
+                }
+                &:hover {
+                    width: calc($diameter-point-800 * $increase-for-current);
+                    height: calc($diameter-point-800 * $increase-for-current);
+                }
+            }
+        }
+    
+        #current {
+            transform: translate(-50%, -50%) rotate(- $shift) translate(calc($diameter-circle-800 / 2)) rotate($shift);
+            width: calc($diameter-point-800 * $increase-for-current);
+            height: calc($diameter-point-800 * $increase-for-current);
+
+            p {
+                transform: translateY(100%) scale(1.2);
+            }
+        }
+
+        .container-years {
+            font-size: $font-size-years-800;
+        }
+
+        .container-button {
+            .arrow {
+                width: $diameter-point-800 * $increase-for-current;
+                height: $diameter-point-800 * $increase-for-current;
+            }
+
+            .arrow-left {
+                &::after {
+                    transform: translate(110%, 150%) rotate(45deg);
+                }
+            }
+        
+            .arrow-right{
+                &::after {
+                    transform: translate(110%, 150%) rotate(225deg);
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: 750px) {
+        .circle {
+            width: $diameter-circle-750;
+            height: $diameter-circle-750;
+        }
+
+        .point {
+            width: $diameter-point-750;
+            height: $diameter-point-750;
+        }
+    
+        @for $i from 0 through $numPoint {
+            #point#{$i + 1} {
+                & {
+                    transform: translate(-50%, -50%) rotate(calc($arcAngle * $i - $shift)) translate(calc($diameter-circle-750 / 2)) rotate(- calc($arcAngle * $i - $shift));
+                }
+                &:hover {
+                    width: calc($diameter-point-750 * $increase-for-current);
+                    height: calc($diameter-point-750 * $increase-for-current);
+                }
+            }
+        }
+    
+        #current {
+            transform: translate(-50%, -50%) rotate(- $shift) translate(calc($diameter-circle-750 / 2)) rotate($shift);
+            width: calc($diameter-point-750 * $increase-for-current);
+            height: calc($diameter-point-750 * $increase-for-current);
+
+            p {
+                transform: translateY(80%) scale(1.2);
+            }
+        }
+
+        .container-years {
+            font-size: $font-size-years-750;
+            .first-year {
+                transform: translate(-10%);
+            }
+    
+            .second-year {
+                transform: translate(10%);
+            }
+        }
+
+        .container-button {   
+            .arrow {
+                width: $diameter-point-750 * $increase-for-current;
+                height: $diameter-point-750 * $increase-for-current;
+            }
+
+            .arrow-left {
+                &::after {
+                    transform: translate(80%, 120%) rotate(45deg);
+                }
+            }
+        
+            .arrow-right{
+                &::after {
+                    transform: translate(80%, 120%) rotate(225deg);
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: 650px) {
+        .circle {
+            width: $diameter-circle-650;
+            height: $diameter-circle-650;
+        }
+
+        .point {
+            width: $diameter-point-650;
+            height: $diameter-point-650;
+        }
+    
+        .point > p {
+            transform: translateY(35%) scale(calc(1.2));
+        }
+
+        @for $i from 0 through $numPoint {
+            #point#{$i + 1} {
+                & {
+                    transform: translate(-50%, -50%) rotate(calc($arcAngle * $i - $shift)) translate(calc($diameter-circle-650 / 2)) rotate(- calc($arcAngle * $i - $shift));
+                }
+                &:hover {
+                    width: calc($diameter-point-650 * $increase-for-current);
+                    height: calc($diameter-point-650 * $increase-for-current);
+                }
+            }
+        }
+    
+        #current {
+            transform: translate(-50%, -50%) rotate(- $shift) translate(calc($diameter-circle-650 / 2)) rotate($shift);
+            width: calc($diameter-point-650 * $increase-for-current);
+            height: calc($diameter-point-650 * $increase-for-current);
+
+            p {
+                transform: translateY(70%) scale(1.2);
+            }
+        }
+
+        .container-years {
+            font-size: $font-size-years-650;
+            .first-year {
+                transform: translate(-10%);
+            }
+    
+            .second-year {
+                transform: translate(10%);
+            }
+        }
+        .container-button {
+            .arrow {
+                width: $diameter-point-650 * $increase-for-current;
+                height: $diameter-point-650 * $increase-for-current;
+            }
+
+            .arrow-left {
+                &::after {
+                    transform: translate(80%, 90%) rotate(45deg);
+                }
+            }
+        
+            .arrow-right{
+                &::after {
+                    transform: translate(50%, 90%) rotate(225deg);
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: 500px) {
+        .circle {
+            width: $diameter-circle-500;
+            height: $diameter-circle-500;
+        }
+
+        .point {
+            width: $diameter-point-500;
+            height: $diameter-point-500;
+        }
+    
+        .point > p {
+            transform: translateY(35%) scale(calc(1.2));
+        }
+
+        @for $i from 0 through $numPoint {
+            #point#{$i + 1} {
+                & {
+                    transform: translate(-50%, -50%) rotate(calc($arcAngle * $i - $shift)) translate(calc($diameter-circle-500 / 2)) rotate(- calc($arcAngle * $i - $shift));
+                }
+                &:hover {
+                    width: calc($diameter-point-500 * $increase-for-current);
+                    height: calc($diameter-point-500 * $increase-for-current);
+                }
+            }
+        }
+    
+        #current {
+            transform: translate(-50%, -50%) rotate(- $shift) translate(calc($diameter-circle-500 / 2)) rotate($shift);
+            width: calc($diameter-point-500 * $increase-for-current);
+            height: calc($diameter-point-500 * $increase-for-current);
+
+            p {
+                transform: translateY(70%) scale(1.2);
+            }
+        }
+
+        .container-years {
+            font-size: $font-size-years-500;
+            .first-year {
+                transform: translate(-10%);
+            }
+    
+            .second-year {
+                transform: translate(10%);
+            }
+        }
+
+        .container-button {
+            .arrow {
+                width: $diameter-point-500 * $increase-for-current;
+                height: $diameter-point-500 * $increase-for-current;
+            }
+        }
+    }
+
+    @media screen and (max-width: 400px) {
+        .circle {
+            width: $diameter-circle-400;
+            height: $diameter-circle-400;
+        }
+
+        .point {
+            width: $diameter-point-400;
+            height: $diameter-point-400;
+        }
+    
+        .point > p {
+            transform: translateY(35%) scale(calc(1.2));
+        }
+
+        @for $i from 0 through $numPoint {
+            #point#{$i + 1} {
+                & {
+                    transform: translate(-50%, -50%) rotate(calc($arcAngle * $i - $shift)) translate(calc($diameter-circle-400 / 2)) rotate(- calc($arcAngle * $i - $shift));
+                }
+                &:hover {
+                    width: calc($diameter-point-400 * $increase-for-current);
+                    height: calc($diameter-point-400 * $increase-for-current);
+                }
+            }
+        }
+    
+        #current {
+            transform: translate(-50%, -50%) rotate(- $shift) translate(calc($diameter-circle-400 / 2)) rotate($shift);
+            width: calc($diameter-point-400 * $increase-for-current);
+            height: calc($diameter-point-400 * $increase-for-current);
+
+            p {
+                transform: translateY(70%) scale(1.2);
+            }
+        }
+
+        .container-years {
+            font-size: $font-size-years-400;
+            .first-year {
+                transform: translate(-15%);
+            }
+    
+            .second-year {
+                transform: translate(15%);
+            }
+        }
+
+        .container-button {            
+            .arrow {
+                width: $diameter-point-400 * $increase-for-current;
+                height: $diameter-point-400 * $increase-for-current;
+            }
+        }
+    }
 }
 
 .swiper-container {
     display: flex;
     flex-direction: row;
-    max-width: 80%;
-    margin: auto;
+    align-items: center;
+    max-height: 20%;
+    height: 20%;
+    margin-left: calc($vector-header-width + 6%);
+    max-width: calc(100% - 2 * $vector-header-width - 12%);
+    width: 100%;
     overflow: hidden;
 
+    .swiper-wrapper {
+        max-width: 80%;
+    }
+
     .swiper-slide{
-        width: 20%;
+        width: 30%;
         height: auto;
         display: flex;
         flex-direction: column;
@@ -185,6 +631,7 @@
         }
         .year {
             color: $blue;
+            margin-bottom: 2%;
         }
         .info {
             color: $black-blue;
@@ -192,17 +639,19 @@
     }
 
     .swiper-button-prev,  .swiper-button-next{
-        position: relative;
-            width: $diameter-point * $increase-for-current;
-            height: $diameter-point * $increase-for-current;
-            border: 1px solid rgb($black-blue, 0.5);
-            border-radius: 50%;
-            cursor: pointer;
-            &:hover {
-                background-color: white;
-            }
+        position: absolute;
+        top: 85%;
+        width: $diameter-point * $increase-for-current;
+        height: $diameter-point * $increase-for-current;
+        border: 1px solid rgb($black-blue, 0.5);
+        border-radius: 50%;
+        cursor: pointer;
+        &:hover {
+            background-color: white;
+        }
     }
     .swiper-button-prev {
+        max-width: 10%;
         &::after {
             position: absolute;
             top: 8px;;
@@ -217,6 +666,7 @@
         }
     }
     .swiper-button-next {
+        max-width: 10%;
         &::after {
             position: absolute;
             top: 8px;;
@@ -231,4 +681,3 @@
         }
     }
 }
-

@@ -7,9 +7,61 @@ $gray: rgb(#303E58, 0.5);
 $defoult-opacity-vector: 0.1;
 
 $vector-header-width: 5px;
+$padding-footer: 3%;
 $numPoint: 6;
 $arcAngle: calc(360deg / $numPoint);
 $shift: 60deg;
 $diameter-circle: 450px;
-$diameter-point: 5px;
+$diameter-point: calc($diameter-circle/100);
 $increase-for-current: 12;
+
+$font-size-years: calc($diameter-circle / 2.5);
+
+/* Переменные для экрана < 1265 */
+$diameter-circle-1265: 400px;
+$diameter-point-1265: calc($diameter-circle/100);
+
+$font-size-years-1265: calc($diameter-circle / 3.5);
+
+
+/* Переменные для экрана < 980 */
+$diameter-circle-980: 350px;
+$diameter-point-980: calc($diameter-circle/100);
+
+$font-size-years-980: calc($diameter-circle / 3.5);
+
+/* Переменные для экрана < 900 */
+$diameter-circle-900: 330px;
+$diameter-point-900: calc($diameter-circle/100);
+
+$font-size-years-900: calc($diameter-circle / 3.5);
+
+/* Переменные для экрана < 800 */
+$diameter-circle-800: 300px;
+$diameter-point-800: calc($diameter-circle/120);
+
+$font-size-years-800: calc($diameter-circle / 4.5);
+
+/* Переменные для экрана < 750 */
+$diameter-circle-750: 270px;
+$diameter-point-750: calc($diameter-circle/130);
+
+$font-size-years-750: calc($diameter-circle / 5);
+
+/* Переменные для экрана < 650 */
+$diameter-circle-650: 240px;
+$diameter-point-650: calc($diameter-circle/140);
+
+$font-size-years-650: calc($diameter-circle / 5.5);
+
+/* Переменные для экрана < 500 */
+$diameter-circle-500: 210px;
+$diameter-point-500: calc($diameter-circle/140);
+
+$font-size-years-500: calc($diameter-circle / 6);
+
+/* Переменные для экрана < 400 */
+$diameter-circle-400: 180px;
+$diameter-point-400: calc($diameter-circle/140);
+
+$font-size-years-400: calc($diameter-circle / 8);

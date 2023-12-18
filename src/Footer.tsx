@@ -1,5 +1,6 @@
 import './Footer.scss';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { screenSizes } from './_screen-size';
 import { years, data } from './_data';
 import Swiper from 'swiper';
 import 'swiper/swiper-bundle.css';
@@ -8,22 +9,66 @@ function Footer() {
   const numPoint: number = 6;
   const arcAngle: number = 360 / numPoint;
   const shift: number = 60;
-  const diameterCircle: number = 450;
-  /*   const diameterPoint: number = 10; */
+  const [diameterCircle, setDiameterCircle] = useState(450);
   const [currentPoint, setCurrentPoint] = useState(1);
-  let swiper: Swiper | null = null;
+  /* let swiper: Swiper | null = null; */
+  const swiper = useRef<any>(null);
+  /* let [swiper, setSwiper] = useState<any>(null); */
 
   useEffect(() => {
+    const handleResize = () => {
+      const windowSize = window.innerWidth;
+      for (let i = 0; i < screenSizes.length; i++) {
+        if (screenSizes[i].width > windowSize) {
+          setDiameterCircle(screenSizes[i].diameter);
+          break;
+        }
+      }
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+  
+  /* useEffect(() => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     swiper = new Swiper('.swiper-container', {
       slidesPerView: 'auto',
-      spaceBetween: 100,
+      spaceBetween: 70,
       navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev',
       },
+      grabCursor: true,
+      observer: true,
     });
-  }, []);
+  }, []); */
+
+  useEffect(() => {
+    swiper.current = new Swiper(
+        '.swiper-container', 
+        {
+          grabCursor: true,
+          observer: true,
+          observeParents: true,
+          slidesPerView: 'auto',
+          spaceBetween: 70,
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+        },
+    );
+
+    return () => {
+      /* setSwiper(swiper); */
+      swiper.current.destroy(true);
+    };
+  }, [swiper]);
+  
 
   async function changeOfYears(numSelected: number) {
     function sleep(ms: number) {
@@ -60,7 +105,6 @@ function Footer() {
       }
       let pointRotation = index * arcAngle + rotationValue - shift;
       const currentTransform = `translate(-50%, -50%) rotate(${pointRotation}deg) translate(${diameterCircle / 2}px) rotate(${-pointRotation}deg)`;
-
       point.style.transform = currentTransform;
       if (index + 1 === selectedPoint) {
         point.id = "current";
@@ -91,6 +135,7 @@ function Footer() {
 
     return (
       <div className='swiper-container'>
+        <div className='swiper-button-prev'></div>
         <div className='swiper-wrapper'>
           {data[currentYears].map((blockInfo) => (
             <div className='swiper-slide' key={blockInfo.year}>
@@ -99,9 +144,7 @@ function Footer() {
             </div>
           ))}
         </div>
-        {/* Кнопки навигации добавлены как дочерние элементы к swiper-container */}
-        <div className='swiper-button-prev' onClick={() => swiper?.slidePrev()}></div>
-        <div className='swiper-button-next' onClick={() => swiper?.slideNext()}></div>
+        <div className='swiper-button-next'></div>
       </div>
     );
   }
