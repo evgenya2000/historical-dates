@@ -1,5 +1,6 @@
 export const years = [{ "first": "2000", "last": "2004" }, { "first": "2005", "last": "2009" }, { "first": "2010", "last": "2014" }, { "first": "2015", "last": "2019" }, { "first": "2020", "last": "2024" }, { "first": "2025", "last": "2029" }];
 
+export const topics = ["Первая тема", "Вторая", "Третья", "Четвертая", "Пятая", "Шестая"]
 export interface YearInfo {
     year: number;
     info: string;

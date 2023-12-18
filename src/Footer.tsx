@@ -1,8 +1,9 @@
 import './Footer.scss';
 import { useEffect, useRef, useState } from 'react';
 import { screenSizes } from './_screen-size';
-import { years, data } from './_data';
+import { years, data, topics } from './_data';
 import Swiper from 'swiper';
+import { Navigation } from 'swiper/modules';
 import 'swiper/swiper-bundle.css';
 
 function Footer() {
@@ -11,9 +12,7 @@ function Footer() {
   const shift: number = 60;
   const [diameterCircle, setDiameterCircle] = useState(450);
   const [currentPoint, setCurrentPoint] = useState(1);
-  /* let swiper: Swiper | null = null; */
   const swiper = useRef<any>(null);
-  /* let [swiper, setSwiper] = useState<any>(null); */
 
   useEffect(() => {
     const handleResize = () => {
@@ -32,22 +31,9 @@ function Footer() {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
-  
-  /* useEffect(() => {
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    swiper = new Swiper('.swiper-container', {
-      slidesPerView: 'auto',
-      spaceBetween: 70,
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
-      grabCursor: true,
-      observer: true,
-    });
-  }, []); */
 
   useEffect(() => {
+    
     swiper.current = new Swiper(
         '.swiper-container', 
         {
@@ -55,6 +41,7 @@ function Footer() {
           observer: true,
           observeParents: true,
           slidesPerView: 'auto',
+          modules: [Navigation],
           spaceBetween: 70,
           navigation: {
             nextEl: '.swiper-button-next',
@@ -62,10 +49,12 @@ function Footer() {
           },
         },
     );
+    swiper.current.slideTo(0);
+    swiper.current.update();
 
     return () => {
-      /* setSwiper(swiper); */
-      swiper.current.destroy(true);
+      swiper.current.update();
+      swiper.current.destroy(true, true); 
     };
   }, [swiper]);
   
@@ -96,6 +85,7 @@ function Footer() {
 
   function rotateToSelectedPoint(selectedPoint: number) {
     changeOfYears(selectedPoint - 1);
+    swiper.current.update();
     let rotationValue = (-selectedPoint + 1) * arcAngle;
     const points = document.querySelectorAll('.point') as NodeListOf<HTMLElement>;
 
@@ -156,6 +146,7 @@ function Footer() {
           {Array.from({ length: numPoint }, (_, index) => index + 1).map((point, index) => (
             <div className="point" id={`${index === 0 ? 'current' : `point${index + 1}`}`} key={point} onClick={() => rotateToSelectedPoint(point)}>
               <p>{point}</p>
+              <p className='topic'>{topics[index]}</p>
             </div>
           ))}
         </div>
