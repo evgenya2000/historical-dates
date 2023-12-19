@@ -64,4 +64,7 @@ $font-size-years-500: calc($diameter-circle / 6);
 $diameter-circle-400: 180px;
 $diameter-point-400: calc($diameter-circle/140);
 
-$font-size-years-400: calc($diameter-circle / 8);
+$font-size-years-400: calc($diameter-circle / 7);
+
+/* Переменные для экрана < 320 */
+$font-size-years-300: calc($diameter-circle / 8);

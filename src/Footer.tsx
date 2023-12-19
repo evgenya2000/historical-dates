@@ -33,31 +33,30 @@ function Footer() {
   }, []);
 
   useEffect(() => {
-    
     swiper.current = new Swiper(
-        '.swiper-container', 
-        {
-          grabCursor: true,
-          observer: true,
-          observeParents: true,
-          slidesPerView: 'auto',
-          modules: [Navigation],
-          spaceBetween: 70,
-          navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-          },
+      '.swiper-container',
+      {
+        grabCursor: true,
+        observer: true,
+        observeParents: true,
+        slidesPerView: 'auto',
+        modules: [Navigation],
+        spaceBetween: 70,
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
         },
+      },
     );
     swiper.current.slideTo(0);
     swiper.current.update();
 
     return () => {
       swiper.current.update();
-      swiper.current.destroy(true, true); 
+      swiper.current.destroy(true, true);
     };
   }, [swiper]);
-  
+
 
   async function changeOfYears(numSelected: number) {
     function sleep(ms: number) {
@@ -90,14 +89,27 @@ function Footer() {
     const points = document.querySelectorAll('.point') as NodeListOf<HTMLElement>;
 
     points.forEach((point, index) => {
+
       if (point.id === "current") {
         point.id = `point${index + 1}`
+        const topic = point.children[1];
+        if (topic) {
+          (topic as HTMLElement).style.opacity = "1";
+          (topic as HTMLElement).style.opacity = "0";
+          topic.id = `topic${index + 1}`;
+         } 
       }
       let pointRotation = index * arcAngle + rotationValue - shift;
       const currentTransform = `translate(-50%, -50%) rotate(${pointRotation}deg) translate(${diameterCircle / 2}px) rotate(${-pointRotation}deg)`;
       point.style.transform = currentTransform;
       if (index + 1 === selectedPoint) {
         point.id = "current";
+        const topic = point.children[1];
+        if (topic){
+          (topic as HTMLElement).style.opacity = "0";
+          topic.id = "current-topic";
+          setTimeout(() => (topic as HTMLElement).style.opacity = "1", 500);
+        }
       }
     });
 
@@ -144,9 +156,9 @@ function Footer() {
       <div className='container-circle'>
         <div className="circle">
           {Array.from({ length: numPoint }, (_, index) => index + 1).map((point, index) => (
-            <div className="point" id={`${index === 0 ? 'current' : `point${index + 1}`}`} key={point} onClick={() => rotateToSelectedPoint(point)}>
+            <div className="point" id={`${index === 0 ? "current" : `point${index + 1}`}`} key={point} onClick={() => rotateToSelectedPoint(point)}>
               <p>{point}</p>
-              <p className='topic'>{topics[index]}</p>
+              {<p className='topic' id={`${index === 0 ? "current-topic" : `topic${index + 1}`}`}>{topics[index]}</p>}
             </div>
           ))}
         </div>

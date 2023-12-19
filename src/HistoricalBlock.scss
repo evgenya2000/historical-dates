@@ -114,9 +114,23 @@
     }
     
     @media screen and (max-width: 400px) {
+        .background-container {
+            .horizontal-vector {
+                top: 50%;
+                max-width: 90%;
+                left: 5%;
+            }
+            .vertical-vector {
+                display: none;
+            }
+        }
         .header {
+            .vector {
+                display: none;
+            }
+
             .text-header{
-                font-size: 100%;
+                font-size: 200%;
             }
         }
     }
