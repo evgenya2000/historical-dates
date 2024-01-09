@@ -55,7 +55,7 @@ function Footer() {
       swiper.current.update();
       swiper.current.destroy(true, true);
     };
-  }, [swiper]);
+  });
 
 
   async function changeOfYears(numSelected: number) {
@@ -158,7 +158,7 @@ function Footer() {
           {Array.from({ length: numPoint }, (_, index) => index + 1).map((point, index) => (
             <div className="point" id={`${index === 0 ? "current" : `point${index + 1}`}`} key={point} onClick={() => rotateToSelectedPoint(point)}>
               <p>{point}</p>
-              {<p className='topic' id={`${index === 0 ? "current-topic" : `topic${index + 1}`}`}>{topics[index]}</p>}
+              <p className='topic' id={`${index === 0 ? "current-topic" : `topic${index + 1}`}`}>{topics[index]}</p>
             </div>
           ))}
         </div>
